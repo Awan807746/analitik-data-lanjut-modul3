@@ -1,40 +1,16 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-import mysql.connector
 
 
 # ==========================================
-# KONEKSI KE DATABASE
-# ==========================================
-def get_connection():
-    return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="",
-        database="db_dal"
-    )
-
-
-# ==========================================
-# MENGAMBIL DATA DARI DATABASE
-# ==========================================
+# MENGAMBIL DATA DARI CSV
+# ============================================
 def get_data_from_db():
-    conn = get_connection()
-
-    query = """
-    SELECT id, semester, jumlah, program_studi, universitas
-    FROM pddikti_example
-    """
-
-    data = pd.read_sql(query, conn)
-
-    conn.close()
-
+    data = pd.read_csv("pddikti_example.csv")
     return data
 
 
-# ==========================================
 # JUDUL APLIKASI
 # ==========================================
 st.title("Streamlit Simple App")
